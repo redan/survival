@@ -1,0 +1,41 @@
+"use strict";
+
+let survival = {
+    people: 7500000000,
+    fedPeople: null,
+    days: 0,
+    food: 0,
+
+    run() {
+        while (this.people > 0){
+            this.giveFood();
+            this.newDay();
+            console.log(`Days: ${this.days} , PeopleSurvival: ${this.people}`);
+            //document.write(`Days: ${this.days} , PeopleSurvival: ${this.people} </br>`);
+        }
+    },
+
+    killMan(){
+        this.people -= 1;
+        this.food += 120;
+    },
+
+    giveFood(){
+        for(this.fedPeople;this.fedPeople < this.people; this.fedPeople++){
+            if (this.food <= 0){
+                this.killMan();
+            }
+            this.food -= 3;
+            this.fedPeople++;
+        }
+    },
+
+    newDay(){
+        this.food = 0;
+        this.fedPeople = 0;
+        this.days++;
+    }
+
+};
+
+//survival.run();
