@@ -16,8 +16,7 @@ let survival = {
                 this.killMan();
             }
             this.giveFood();
-            this.data.days++;
-            this.data.food = 0;
+            this.newDay();
             console.log(`Days: ${this.data.days} , PeopleSurvival: ${this.data.people}`);
             //document.write(`Days: ${this.data.days} , PeopleSurvival: ${this.data.people} </br>`);
         }
@@ -44,7 +43,14 @@ let survival = {
             this.data.food -= 3;
             this.data.fedPeople++;
         }
+    },
+
+    newDay(){
+        this.data.food = 0;
+        this.data.fedPeople = 0;
+        this.data.days++;
     }
+
 };
 
 //survival.run();
