@@ -1,0 +1,66 @@
+let data = {
+    people: 75000000000,
+    fedPeople: null,
+    days: 0,
+    food: 0,
+};
+
+let survival = {
+    data,
+
+    run() {
+        while (this.data.people > 0){
+            if(this.data.people > 5000000){
+              this.giveFoodForMillion();
+              this.newDay();
+              console.log(`Days: ${this.data.days} , PeopleSurvival: ${this.data.people}`);
+            } else {
+              this.giveFood();
+              this.newDay();
+              console.log(`Days: ${this.data.days} , PeopleSurvival: ${this.data.people}`);
+            };
+            
+            //document.write(`Days: ${this.data.days} , PeopleSurvival: ${this.data.people} </br>`);
+        }
+    },
+
+    killMan(){
+        this.data.people -= 1;
+        this.data.food += 120;
+    },
+  
+    killMillion(){
+        this.data.people -=1000000;
+        this.data.food = (1000000 * 120);
+    },
+
+    giveFood(){
+        for(this.data.fedPeople;this.data.fedPeople < this.data.people; this.data.fedPeople++){
+            if (this.data.food <= 0){
+                this.killMan();
+            }
+            this.data.food -= 3;
+            this.data.fedPeople++;
+        }
+    },
+  
+    giveFoodForMillion(){
+           if((this.data.people - this.data.fedPeople) < 40000000){
+              this.giveFood();
+           } else {
+             for(this.data.fedPeople; this.data.fedPeople < this.data.people; this.data.fedPeople += 40000000) {
+               this.killMillion();
+               this.data.food = 0;
+             }
+           }  
+    },
+
+    newDay(){
+        this.data.food = 0;
+        this.data.fedPeople = 0;
+        this.data.days++;
+    }
+
+};
+
+//survival.run();
